@@ -10,7 +10,8 @@ class Connector:
     password: str
     database: str
 
-    connector: object
+    connector = None
+    cursor = None
 
     def __init__(self, host: str, user: str, password: str, database: str):
         self.host = host
@@ -20,5 +21,7 @@ class Connector:
 
         self.connector = pymysql.connect(host=self.host, user=self.user,
                                          password=self.password, database=self.database)
+        self.cursor = self.connector.cursor()
 
-        # шо ты там угараешь? скинь ей дикпик
+    def __repr__(self):
+        return self.connector

@@ -1,0 +1,4 @@
+from sql_app.migrations.create_product_table import CreateProductTableMigration
+from sql_app.migrations.create_products_price_table import CreateProductsPriceTableMigration
+from sql_app.migrations.create_user_table import CreateUserTableMigration
+from sql_app.migrations.create_users_products_table import CreateUsersProductsTable
