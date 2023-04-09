@@ -4,7 +4,7 @@ from app.database import engine
 
 from app.models.user import Base
 
-from app.routes.user_routes import user_router
+from app.routes import user_router, product_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -23,6 +23,7 @@ app.add_middleware(
 )
 
 app.include_router(user_router, tags=['User'], prefix='/api/users')
+app.include_router(product_router, tags=['Product'], prefix='/api/products')
 
 
 @app.get("/api/healthchecker")
