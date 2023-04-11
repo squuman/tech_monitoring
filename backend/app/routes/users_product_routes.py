@@ -16,7 +16,7 @@ users_product_controller = UsersProductController()
 
 @users_product_router.get('/')
 def get_users_products(limit: int = 10, page: int = 1, search: str = '', db: Session = Depends(get_db)):
-    return users_product_controller.get_users_products(limit, page, db)
+    return users_product_controller.get_users_products(limit, page, search, db)
 
 
 @users_product_router.post('/', status_code=status.HTTP_201_CREATED)

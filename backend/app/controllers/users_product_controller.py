@@ -18,10 +18,10 @@ class UsersProductController(Controller):
 
         return {'status': 'success', 'user': new_user}
 
-    def get_users_products(self, limit: int = 10, page: int = 1, db: Session = Depends(get_db)):
+    def get_users_products(self, limit: int = 10, page: int = 1, search: str = "", db: Session = Depends(get_db)):
         skip = (page - 1) * limit
 
-        users_products = db.query(UsersProduct).limit(limit).offset(
+        users_products = db.query(UsersProduct).filter(UsersProduct.user_id == search).limit(limit).offset(
             skip).all()
 
         return {'status': 'success', 'results': len(users_products), 'users_products': users_products}
