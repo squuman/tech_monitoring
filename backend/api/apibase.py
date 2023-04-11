@@ -2,7 +2,7 @@ import requests
 
 
 class ApiBase:
-    url: str
+    users_url: str
 
     def __init__(self):
         pass
