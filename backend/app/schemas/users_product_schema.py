@@ -5,8 +5,8 @@ from pydantic import BaseModel
 
 class UsersProductBaseSchema(BaseModel):
     id: int | None = None
-    user_id: str
-    product_id: str
+    user_id: int
+    product_id: int
     createdAt: datetime | None = None
     updatedAt: datetime | None = None
 
