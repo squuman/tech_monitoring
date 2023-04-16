@@ -1,3 +1,5 @@
+import random
+
 import pytest
 
 import logging
@@ -21,6 +23,7 @@ def create_user():
 
     :return:
     """
+    api = AppApi()
     data = generate_users()[0]
 
     api.create_user(data)
@@ -41,6 +44,7 @@ def delete_user(user_id: str):
     :param user_id:
     :return:
     """
+    api = AppApi()
 
     try:
         pass
@@ -55,6 +59,7 @@ def create_product():
 
     :return:
     """
+    api = AppApi()
     data = generate_products()[0]
 
     api.create_product(data)
@@ -69,6 +74,8 @@ def create_product():
 
 @pytest.fixture
 def delete_product(product_id: str):
+    api = AppApi()
+
     try:
         pass
     finally:
@@ -107,3 +114,27 @@ def create_users_product():
         yield users_product
     finally:
         api.delete_users_product(str(users_product['id']))
+
+
+@pytest.fixture
+def create_products_price():
+    """
+    Создание продуктовых цен
+
+    :return:
+    """
+
+    api = AppApi()
+    product_data = generate_products()[0]
+
+    api.create_product(product_data)
+    product_response = api.get_products(search=product_data['title'])
+    product = json.loads(product_response.text)['products'][0]
+
+    api.create_products_price(product['id'], str(random.randint(0, 10) * 1.0))
+    products = json.loads(api.get_products_price(search=product['id']).text)['products']
+
+    try:
+        yield products[0]
+    finally:
+        api.delete_products_price(str(products[0]['id']))

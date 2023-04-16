@@ -18,6 +18,7 @@ class AppApi(ApiBase):
     users_url = 'http://127.0.0.1:8000/api/users/'
     products_url = 'http://127.0.0.1:8000/api/products/'
     users_product_url = 'http://127.0.0.1:8000/api/users_product/'
+    products_price_url = 'http://127.0.0.1:8000/api/products_price/'
 
     def __init__(self):
         super().__init__()
@@ -169,5 +170,43 @@ class AppApi(ApiBase):
         :return:
         """
         response = requests.delete(self.users_product_url + users_product_id)
+
+        return response
+
+    def create_products_price(self, product_id: str, price: str) -> Response:
+        """
+        Создание продуктовой цены
+
+        :param product_id:
+        :param price:
+        :return:
+        """
+        response = requests.post(self.products_price_url, json={
+            "product_id": product_id,
+            "price": price,
+        })
+
+        return response
+
+    def get_products_price(self, limit=10, page=1, search: str = '') -> Response:
+        """
+        Получение продуктовой цены
+
+        :param limit:
+        :param page:
+        :param search:
+        :return:
+        """
+        response = requests.get(self.products_price_url + f"?limit={limit}&page={page}&search={search}")
+
+        return response
+
+    def update_products_price(self, products_price_id: str, data: dict) -> Response:
+        response = requests.patch(self.products_price_url + products_price_id, json=data)
+
+        return response
+
+    def delete_products_price(self, products_price_id) -> Response:
+        response = requests.delete(self.products_price_url + products_price_id)
 
         return response

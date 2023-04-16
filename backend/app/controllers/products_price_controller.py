@@ -1,6 +1,6 @@
 from app.controllers import Controller
 
-from app.models import ProductsPrice
+from app.models import ProductsPrice, Product
 from app.schemas import ProductsPriceBaseSchema
 from fastapi import HTTPException, status, Response
 
@@ -21,7 +21,7 @@ class ProductsPriceController(Controller):
     def get_products_price(self, limit: int = 10, page: int = 1, search: str = '', db: Session = Depends(get_db)):
         skip = (page - 1) * limit
 
-        products = db.query(ProductsPrice).filter(ProductsPrice.id.contains(search)).limit(limit).offset(skip).all()
+        products = db.query(ProductsPrice).filter(Product.id == search).limit(limit).offset(skip).all()
 
         return {'status': 'success', 'results': len(products), 'products': products}
 
