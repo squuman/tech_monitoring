@@ -17,6 +17,7 @@ class AppApi(ApiBase):
 
     users_url = 'http://127.0.0.1:8000/api/users/'
     products_url = 'http://127.0.0.1:8000/api/products/'
+    users_product_url = 'http://127.0.0.1:8000/api/users_product/'
 
     def __init__(self):
         super().__init__()
@@ -128,5 +129,45 @@ class AppApi(ApiBase):
         :return:
         """
         response = requests.delete(self.products_url + id)
+
+        return response
+
+    def get_users_product(self, limit=10, page=1, search: str = '') -> Response:
+        """
+        Получение списка продуктов пользователей
+
+        :param limit:
+        :param page:
+        :param search:
+        :return:
+        """
+        response = requests.get(self.users_product_url + f"?limit={limit}&page={page}&search={search}")
+
+        return response
+
+    def create_users_product(self, user_id: str, product_id: str) -> Response:
+        """
+        Создание продукта пользователя
+
+        :param user_id:
+        :param product_id:
+        :return:
+        """
+
+        response = requests.post(self.users_product_url, json={
+            "user_id": user_id,
+            "product_id": product_id,
+        })
+
+        return response
+
+    def delete_users_product(self, users_product_id: str) -> Response:
+        """
+        Удаление пользовательского продукта
+
+        :param users_product_id:
+        :return:
+        """
+        response = requests.delete(self.users_product_url + users_product_id)
 
         return response

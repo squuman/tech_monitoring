@@ -21,7 +21,7 @@ def test_create_user(api, data):
         api.delete_user(str(response['users'][0]['id']))
 
 
-@allure.story("Получения списка пользователей")
+@allure.story("Получение списка пользователей")
 def test_get_users(api, create_user):
     with allure.step("Отправка запроса для получения списка пользователей"):
         response = api.get_users()
