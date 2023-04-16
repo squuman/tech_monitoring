@@ -1,4 +1,8 @@
+"""
+Схема модели для продуктовой цены
+"""
 from datetime import datetime
+
 from typing import List
 from pydantic import BaseModel
 
