@@ -41,12 +41,11 @@ class PageParser:
 
     def get_product_data(self) -> list:
         self.bs = BeautifulSoup(self._get_html(), 'html.parser')
-        rows = self.bs.findAll('tr', {'class': 'priceElem'})
+        rows = self.bs.find_all('td', {"class": "where-buy-price"})
         price_list = []
 
         for row in rows:
             data = {
-                'title': row.find('p').text,
                 'price': str(row.find('a').text).replace('\xa0', ' '),
             }
             price_list.append(data)
