@@ -21,7 +21,7 @@ class UserController(Controller):
     def get_users(self, limit: int = 10, page: int = 1, search: str = '', db: Session = Depends(get_db)):
         skip = (page - 1) * limit
 
-        users = db.query(User).filter(User.name.contains(search)).limit(limit).offset(skip).all()
+        users = db.query(User).filter(User.login.contains(search)).limit(limit).offset(skip).all()
 
         return {'status': 'success', 'results': len(users), 'users': users}
 
