@@ -11,6 +11,7 @@ class ProductsPriceBaseSchema(BaseModel):
     id: int | None = None
     product_id: int
     price: float
+    storage: str
     createdAt: datetime | None = None
     updatedAt: datetime | None = None
 
