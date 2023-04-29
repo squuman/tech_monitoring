@@ -18,10 +18,15 @@ class ProductsPriceController(Controller):
 
         return {'status': 'success', 'product': new_product}
 
-    def get_products_price(self, limit: int = 10, page: int = 1, search: str = '', db: Session = Depends(get_db)):
+    def get_products_price(self, limit: int, page: int, search: str = '', db: Session = Depends(get_db)):
         skip = (page - 1) * limit
 
-        products = db.query(ProductsPrice).filter(ProductsPrice.product_id == search).limit(limit).offset(skip).all()
+        if limit is None and page is None:
+            products = db.query(ProductsPrice).filter(ProductsPrice.product_id == search).all()
+        else:
+            products = db.query(ProductsPrice).filter(ProductsPrice.product_id == search)\
+                .limit(limit).offset(skip).all()
+
         products_count = db.query(ProductsPrice).filter(Product.id == search).count()
 
         return {
