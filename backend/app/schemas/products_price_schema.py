@@ -1,7 +1,7 @@
 """
 Схема модели для продуктовой цены
 """
-from datetime import datetime
+from datetime import date
 
 from typing import List
 from pydantic import BaseModel
@@ -12,8 +12,8 @@ class ProductsPriceBaseSchema(BaseModel):
     product_id: int
     price: float
     storage: str
-    createdAt: datetime | None = None
-    updatedAt: datetime | None = None
+    createdAt: date | None = None
+    updatedAt: date | None = None
 
     class Config:
         orm_mode = True
