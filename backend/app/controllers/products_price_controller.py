@@ -21,7 +21,7 @@ class ProductsPriceController(Controller):
     def get_products_price(self, limit: int = 10, page: int = 1, search: str = '', db: Session = Depends(get_db)):
         skip = (page - 1) * limit
 
-        products = db.query(ProductsPrice).filter(Product.id == search).limit(limit).offset(skip).all()
+        products = db.query(ProductsPrice).filter(ProductsPrice.product_id == search).limit(limit).offset(skip).all()
         products_count = db.query(ProductsPrice).filter(Product.id == search).count()
 
         return {
