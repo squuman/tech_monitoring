@@ -22,7 +22,7 @@ class ProductController(Controller):
         skip = (page - 1) * limit
 
         products = db.query(Product).filter(Product.title.contains(search)).limit(limit).offset(skip).all()
-        products_count = db.query(Product).filter(Product.title.contains(search)).limit(limit).count()
+        products_count = db.query(Product).filter(Product.title.contains(search)).count()
 
         return {
             'status': 'success',

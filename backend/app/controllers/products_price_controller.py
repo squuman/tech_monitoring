@@ -22,11 +22,12 @@ class ProductsPriceController(Controller):
         skip = (page - 1) * limit
 
         products = db.query(ProductsPrice).filter(Product.id == search).limit(limit).offset(skip).all()
-        products_count = db.query(ProductsPrice).filter(Product.id == search).limit(limit).count()
+        products_count = db.query(ProductsPrice).filter(Product.id == search).count()
 
         return {
             'status': 'success',
             'results': len(products),
+            'count': products_count,
             'products': products
         }
 
