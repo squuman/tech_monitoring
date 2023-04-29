@@ -22,8 +22,13 @@ class ProductsPriceController(Controller):
         skip = (page - 1) * limit
 
         products = db.query(ProductsPrice).filter(Product.id == search).limit(limit).offset(skip).all()
+        products_count = db.query(ProductsPrice).filter(Product.id == search).limit(limit).count()
 
-        return {'status': 'success', 'results': len(products), 'products': products}
+        return {
+            'status': 'success',
+            'results': len(products),
+            'products': products
+        }
 
     def update_products_price(self, product_id, payload: ProductsPriceBaseSchema, db: Session = Depends(get_db)):
         product_query = db.query(ProductsPrice).filter(ProductsPrice.id == product_id)

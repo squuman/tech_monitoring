@@ -22,8 +22,14 @@ class ProductController(Controller):
         skip = (page - 1) * limit
 
         products = db.query(Product).filter(Product.title.contains(search)).limit(limit).offset(skip).all()
+        products_count = db.query(Product).filter(Product.title.contains(search)).count()
 
-        return {'status': 'success', 'results': len(products), 'products': products}
+        return {
+            'status': 'success',
+            'results': len(products),
+            'count': products_count,
+            'products': products
+        }
 
     def get_product(self, product_id: str, db: Session = Depends(get_db)):
         product_query = db.query(Product).filter(Product.id == product_id)
