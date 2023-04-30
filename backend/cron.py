@@ -26,14 +26,10 @@ def app():
                 if data is None:
                     continue
 
-                print({
-                    "product_id": product['id'],
-                    "price": data['price'],
-                })
-
                 requests.post(api_url + 'products_price/', json={
                     "product_id": product['id'],
                     "price": data['price'].replace(' руб', ''),
+                    "storage": data['storage'],
                 })
 
 

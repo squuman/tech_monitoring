@@ -4,7 +4,7 @@ from app.database import engine
 
 from app.models.user import Base
 
-from app.routes import user_router, product_router, users_product_router, products_price_router
+from app.routes import user_router, product_router, users_product_router, products_price_router, average_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -26,8 +26,9 @@ app.include_router(user_router, tags=['User'], prefix='/api/users')
 app.include_router(product_router, tags=['Product'], prefix='/api/products')
 app.include_router(users_product_router, tags=['UsersProduct'], prefix='/api/users_product')
 app.include_router(products_price_router, tags=['ProductsPrice'], prefix='/api/products_price')
+app.include_router(average_router, tags=['ProductsPrice'], prefix='/api/average')
 
 
 @app.get("/api/healthchecker")
 def root():
-    return {"message": "Welcome to FastAPI, fuckin' slave!"}
+    return {"message": "Welcome to FastAPI, slave!"}

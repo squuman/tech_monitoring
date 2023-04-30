@@ -3,3 +3,4 @@ from app.controllers.user_controller import UserController
 from app.controllers.product_controller import ProductController
 from app.controllers.users_product_controller import UsersProductController
 from app.controllers.products_price_controller import ProductsPriceController
+from app.controllers.average_controller import AverageController
