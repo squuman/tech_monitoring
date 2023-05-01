@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 
   <script type="module">
-    import {CreateUser} from "<?php echo $GLOBALS["absolutePath"]; ?>/func/controller/controller.js";
+    import {CreateUser} from "<?php echo $GLOBALS["absolutePath"]; ?>func/controller/controller.js";
     document.getElementById("btn-reg").onclick = CreateUser;
   </script>
 </head>

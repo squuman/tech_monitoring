@@ -28,7 +28,7 @@ else{ $search = $_POST["search"]; }
   </style>
 
   <script type="module">
-    import {GetProducts, CreateProduct} from "<?php echo $GLOBALS["absolutePath"]; ?>../func/controller/controller.js";
+    import {GetProducts, CreateProduct} from "<?php echo $GLOBALS["absolutePath"]; ?>func/controller/controller.js";
     GetProducts(<?php echo $_GET["page"]; ?>, "<?php echo $search; ?>");
     document.getElementById("btn-create").onclick = CreateProduct;
   </script>

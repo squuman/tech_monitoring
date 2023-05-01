@@ -18,7 +18,7 @@ if(!isset($_GET["id"])){ $_GET["id"] = 1;} ?>
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 
   <script type="module">
-    import {GetPrices, FillChart} from "<?php echo $GLOBALS["absolutePath"]; ?>/func/controller/controller.js";
+    import {GetPrices, FillChart} from "<?php echo $GLOBALS["absolutePath"]; ?>func/controller/controller.js";
     GetPrices(<?php echo $_GET["id"]; ?>);
     FillChart("<?php include_once __DIR__ . '/../func/querries/get_product_name.php'; ?>", '<?php include_once __DIR__ . '/../func/querries/get_prices_data.php' ?>');
   </script>

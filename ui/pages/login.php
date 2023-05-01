@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 
   <script type="module">
-    import {GetUser} from "<?php echo $GLOBALS["absolutePath"]; ?>/func/controller/controller.js";
+    import {GetUser} from "<?php echo $GLOBALS["absolutePath"]; ?>func/controller/controller.js";
     document.getElementById("btn-log").onclick = GetUser;
   </script>
 </head>
