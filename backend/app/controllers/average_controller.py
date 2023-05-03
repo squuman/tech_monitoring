@@ -24,13 +24,15 @@ class AverageController(Controller):
 
         for product in products:
             if product.createdAt in average:
+                average[product.createdAt]['all_price'] += product.price
                 average[product.createdAt]['average'] += product.price
                 average[product.createdAt]['count'] += 1
                 average[product.createdAt]['average'] = \
-                    average[product.createdAt]['average'] / average[product.createdAt]['count']
+                    average[product.createdAt]['all_price'] / average[product.createdAt]['count']
             else:
                 average[product.createdAt] = {
-                    "average": product.price,
+                    "all_price": product.price,
+                    "average": 0,
                     "count": 1
                 }
 
