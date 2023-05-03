@@ -27,7 +27,7 @@ def create_user():
     data = generate_users()[0]
 
     api.create_user(data)
-    response = api.get_users(search=data['name'])
+    response = api.get_users(search=data['login'])
     user = json.loads(response.text)['users'][0]
 
     try:
@@ -96,7 +96,7 @@ def create_users_product():
 
     # создание пользователя
     api.create_user(user_data)
-    user_response = api.get_users(search=user_data['name'])
+    user_response = api.get_users(search=user_data['login'])
     user = json.loads(user_response.text)['users'][0]
 
     # создание продукта
@@ -132,9 +132,9 @@ def create_products_price():
     product = json.loads(product_response.text)['products'][0]
 
     api.create_products_price(product['id'], str(random.randint(0, 10) * 1.0))
-    products = json.loads(api.get_products_price(search=product['id']).text)['products']
+    products_price = json.loads(api.get_products_price(search=product['id']).text)['products']
 
     try:
-        yield products[0]
+        yield products_price[0]
     finally:
-        api.delete_products_price(str(products[0]['id']))
+        api.delete_products_price(str(products_price[0]['id']))

@@ -37,7 +37,6 @@ def test_update_product(api, create_product):
         new_title = 'updated title'
         api.update_product(str(create_product['id']), {
             "title": new_title,
-            "price": create_product['price'],
         })
     with allure.step("Получение продукта"):
         response = api.get_product(str(create_product['id']))

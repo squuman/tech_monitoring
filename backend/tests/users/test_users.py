@@ -12,7 +12,7 @@ def test_create_user(api, data):
         create_user = api.create_user(data)
         assert 201 == create_user.status_code
     with allure.step("Получение пользователя"):
-        response = json.loads(api.get_users(search=data['name']).text)
+        response = json.loads(api.get_users(search=data['login']).text)
 
         assert 1 == response['results']
         assert data['name'] == response['users'][0]['name']

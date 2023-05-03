@@ -1,6 +1,7 @@
 """
 Класс для работы с API приложения
 """
+import datetime
 import json
 
 import requests
@@ -184,11 +185,12 @@ class AppApi(ApiBase):
         response = requests.post(self.products_price_url, json={
             "product_id": product_id,
             "price": price,
+            "storage": "storage"
         })
 
         return response
 
-    def get_products_price(self, limit=10, page=1, search: str = '') -> Response:
+    def get_products_price(self, search: str = '') -> Response:
         """
         Получение продуктовой цены
 
@@ -197,7 +199,7 @@ class AppApi(ApiBase):
         :param search:
         :return:
         """
-        response = requests.get(self.products_price_url + f"?limit={limit}&page={page}&search={search}")
+        response = requests.get(self.products_price_url + f"?search={search}")
 
         return response
 
